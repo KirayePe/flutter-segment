@@ -29,6 +29,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import com.segment.analytics.android.integrations.mixpanel.MixpanelIntegration;
 
 /** FlutterSegmentPlugin */
 public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
@@ -76,6 +77,8 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
       if (isBranchIoIntegrationEnabled){
         analyticsBuilder.use(BranchIntegration.FACTORY);
       }
+      
+      analyticsBuilder.use(MixpanelIntegration.FACTORY);
 
       // Here we build a middleware that just appends data to the current context
       // using the [deepMerge] strategy.
